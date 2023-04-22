@@ -47,7 +47,7 @@ int create_an_error(char **arguments, int error_value)
 	switch (error_value)
 	{
 	case -1:
-		error = error_environmentironment(arguments);
+		error = error_environment(arguments);
 		break;
 	case 1:
 		error = error_1(arguments);

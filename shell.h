@@ -106,7 +106,7 @@ char **_get_environment(const char *variable);
 
 /* Error Handling */
 int create_an_error(char **arguments, int err);
-char *error_environmentironment(char **arguments);
+char *error_environment(char **arguments);
 char *error_1(char **arguments);
 char *error_2_exit(char **arguments);
 char *error_2_change_directory(char **arguments);
