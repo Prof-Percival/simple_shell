@@ -68,7 +68,7 @@ char **_get_environment(const char *variable)
 	length = string_length(variable);
 	for (index = 0; environment[index]; index++)
 	{
-		if (_string_compare(variable, environment[index], length) == 0)
+		if (_strncmp(variable, environment[index], length) == 0)
 			return (&environment[index]);
 	}
 

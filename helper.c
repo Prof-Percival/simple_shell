@@ -65,7 +65,7 @@ void variable_replacement(char **line, int *exe_ret)
 			if (!line)
 				return;
 			new_line[0] = '\0';
-			_stringcat(new_line, old_line, j);
+			_strncat(new_line, old_line, j);
 			if (replacement)
 			{
 				_stringcat(new_line, replacement);
@@ -136,7 +136,7 @@ char *get_environment_value(char *beginning, int length)
 	if (!variable)
 		return (NULL);
 	variable[0] = '\0';
-	_stringcat(variable, beginning, length);
+	_strncat(variable, beginning, length);
 
 	variable_addr = _get_environment(variable);
 	free(variable);

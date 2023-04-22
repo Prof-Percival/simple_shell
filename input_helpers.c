@@ -57,7 +57,7 @@ int call_arguments(char **arguments, char **front, int *exe_ret)
 		return (*exe_ret);
 	for (index = 0; arguments[index]; index++)
 	{
-		if (_string_compare(arguments[index], "||", 2) == 0)
+		if (_strncmp(arguments[index], "||", 2) == 0)
 		{
 			free(arguments[index]);
 			arguments[index] = NULL;
@@ -75,7 +75,7 @@ int call_arguments(char **arguments, char **front, int *exe_ret)
 				return (return_value);
 			}
 		}
-		else if (_string_compare(arguments[index], "&&", 2) == 0)
+		else if (_strncmp(arguments[index], "&&", 2) == 0)
 		{
 			free(arguments[index]);
 			arguments[index] = NULL;
@@ -130,7 +130,7 @@ int handle_arguments(int *exe_ret)
 
 	for (index = 0; arguments[index]; index++)
 	{
-		if (_string_compare(arguments[index], ";", 1) == 0)
+		if (_strncmp(arguments[index], ";", 1) == 0)
 		{
 			free(arguments[index]);
 			arguments[index] = NULL;

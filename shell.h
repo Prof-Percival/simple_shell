@@ -82,12 +82,12 @@ char **replace_aliases(char **arguments);
 /* String functions */
 int string_length(const char *s);
 char *_stringcat(char *dest, const char *src);
-char *_stringcat(char *dest, const char *src, size_t n);
+char *_strncat(char *dest, const char *src, size_t n);
 char *_stringcopy(char *dest, const char *src);
 char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
 int _string_compare(char *s1, char *s2);
-int _string_compare(const char *s1, const char *s2, size_t n);
+int _strncmp(const char *s1, const char *s2, size_t n);
 
 /* Builtins */
 int (*get_a_builtin(char *command))(char **arguments, char **front);

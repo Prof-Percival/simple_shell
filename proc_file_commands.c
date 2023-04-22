@@ -69,7 +69,7 @@ int proc_file_commands(char *file_path, int *exe_ret)
 
 	for (i = 0; arguments[i]; i++)
 	{
-		if (_string_compare(arguments[i], ";", 1) == 0)
+		if (_strncmp(arguments[i], ";", 1) == 0)
 		{
 			free(arguments[i]);
 			arguments[i] = NULL;
