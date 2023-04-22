@@ -12,7 +12,7 @@ void help_environment(void)
 {
 	char *message = "env: env\n\tPrints the current environment.\n";
 
-	write(STDOUT_FILENO, message, _strlen(message));
+	write(STDOUT_FILENO, message, string_length(message));
 }
 
 /**
@@ -20,13 +20,13 @@ void help_environment(void)
  */
 void help_set_environment(void)
 {
-	char *message = "setenv: setenv [VARIABLE] [VALUE]\n\tInitializes a new";
+	char *message = "setenv: setenv [variable] [VALUE]\n\tInitializes a new";
 
-	write(STDOUT_FILENO, message, _strlen(message));
+	write(STDOUT_FILENO, message, string_length(message));
 	message = "environment variable, or modifies an existing one.\n\n";
-	write(STDOUT_FILENO, message, _strlen(message));
+	write(STDOUT_FILENO, message, string_length(message));
 	message = "\tUpon failure, prints a message to stderr.\n";
-	write(STDOUT_FILENO, message, _strlen(message));
+	write(STDOUT_FILENO, message, string_length(message));
 }
 
 /**
@@ -35,11 +35,11 @@ void help_set_environment(void)
  */
 void help_unset_environment(void)
 {
-	char *message = "unsetenv: unsetenv [VARIABLE]\n\tRemoves an ";
+	char *message = "unsetenv: unsetenv [variable]\n\tRemoves an ";
 
-	write(STDOUT_FILENO, message, _strlen(message));
+	write(STDOUT_FILENO, message, string_length(message));
 	message = "environmental variable.\n\n\tUpon failure, prints a ";
-	write(STDOUT_FILENO, message, _strlen(message));
+	write(STDOUT_FILENO, message, string_length(message));
 	message = "message to stderr.\n";
-	write(STDOUT_FILENO, message, _strlen(message));
+	write(STDOUT_FILENO, message, string_length(message));
 }
