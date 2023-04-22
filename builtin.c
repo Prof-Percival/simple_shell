@@ -94,15 +94,15 @@ int shell_help(char **arguments, char __attribute__((__unused__)) **front)
 	else if (_string_compare(arguments[0], "alias") == 0)
 		help_alias();
 	else if (_string_compare(arguments[0], "cd") == 0)
-		help_cd();
+		help_change_directory();
 	else if (_string_compare(arguments[0], "exit") == 0)
 		help_exit();
 	else if (_string_compare(arguments[0], "env") == 0)
-		help_env();
+		help_environment();
 	else if (_string_compare(arguments[0], "setenv") == 0)
-		help_setenv();
+		help_set_environment();
 	else if (_string_compare(arguments[0], "unsetenv") == 0)
-		help_unsetenv();
+		help_unset_environment();
 	else if (_string_compare(arguments[0], "help") == 0)
 		help_help();
 	else

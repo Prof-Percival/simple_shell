@@ -1,7 +1,7 @@
 #include "shell.h"
 
 int number_length(int number);
-int create_an_error(char **arguments, int error);
+int create_an_error(char **arguments, int error_value);
 char *_integer_to_string(int number);
 
 /**
@@ -34,44 +34,44 @@ int number_length(int number)
 }
 
 /**
- * create_an_error - It writes a custom error message to stderror.
+ * create_an_error - It writes a custom error_value message to stderror.
  * @arguments: An array of arguments.
- * @error: The error value.
+ * @error_value: The error_value value.
  *
- * Return: The error value.
+ * Return: The error_value value.
  */
-int create_an_error(char **arguments, int error)
+int create_an_error(char **arguments, int error_value)
 {
-	char *error;
+	char *error_value;
 
-	switch (error)
+	switch (error_value)
 	{
 	case -1:
-		error = error_environmentironment(arguments);
+		error_value = error_environmentironment(arguments);
 		break;
 	case 1:
-		error = error_1(arguments);
+		error_value = error_1(arguments);
 		break;
 	case 2:
 		if (*(arguments[0]) == 'e')
-			error = error_2_exit(++arguments);
+			error_value = error_2_exit(++arguments);
 		else if (arguments[0][0] == ';' || arguments[0][0] == '&' || arguments[0][0] == '|')
-			error = error_2_syntax(arguments);
+			error_value = error_2_syntax(arguments);
 		else
-			error = error_2_change_directory(arguments);
+			error_value = error_2_change_directory(arguments);
 		break;
 	case 126:
-		error = error_126(arguments);
+		error_value = error_126(arguments);
 		break;
 	case 127:
-		error = error_127(arguments);
+		error_value = error_127(arguments);
 		break;
 	}
-	write(STDERR_FILENO, error, string_length(error));
+	write(STDERR_FILENO, error_value, string_length(error_value));
 
-	if (error)
-		free(error);
-	return (error);
+	if (error_value)
+		free(error_value);
+	return (error_value);
 
 }
 

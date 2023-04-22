@@ -21,7 +21,7 @@ list_type *add_node_end(list_type **head, char *dir)
 	if (!new_node)
 		return (NULL);
 
-	new_node->dir = dir;
+	new_node->directory = dir;
 	new_node->next = NULL;
 
 	if (*head)
@@ -88,7 +88,7 @@ void free_list(list_type *head)
 	while (head)
 	{
 		next = head->next;
-		free(head->dir);
+		free(head->directory);
 		free(head);
 		head = next;
 	}
