@@ -12,7 +12,7 @@ char *get_environment_value(char *beginning, int length);
  */
 void free_arguments(char **arguments, char **front)
 {
-	size_type i;
+	size_t i;
 
 	for (i = 0; arguments[i] || arguments[i + 1]; i++)
 		free(arguments[i]);
@@ -65,7 +65,7 @@ void variable_replacement(char **line, int *exe_ret)
 			if (!line)
 				return;
 			new_line[0] = '\0';
-			_strncat(new_line, old_line, j);
+			_stringcat(new_line, old_line, j);
 			if (replacement)
 			{
 				_stringcat(new_line, replacement);
@@ -92,9 +92,9 @@ void variable_replacement(char **line, int *exe_ret)
  */
 char *get_pid(void)
 {
-	size_type i = 0;
+	size_t i = 0;
 	char *buffer;
-	ssize_type file;
+	ssize_t file;
 
 	file = open("/proc/self/stat", O_RDONLY);
 	if (file == -1)
@@ -136,7 +136,7 @@ char *get_environment_value(char *beginning, int length)
 	if (!variable)
 		return (NULL);
 	variable[0] = '\0';
-	_strncat(variable, beginning, length);
+	_stringcat(variable, beginning, length);
 
 	variable_addr = _get_environment(variable);
 	free(variable);

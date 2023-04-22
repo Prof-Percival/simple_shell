@@ -52,7 +52,7 @@ char *fill_path_directory(char *path)
 		}
 		else
 		{
-			_strncat(path_copy, &path[i], 1);
+			_stringcat(path_copy, &path[i], 1);
 		}
 	}
 	return (path_copy);

@@ -44,7 +44,7 @@ int shell_environmentironment(char **arguments, char __attribute__((__unused__))
  */
 int shell_unset_environment(char **arguments, char __attribute__((__unused__)) **front)
 {
-	size_type size;
+	size_t size;
 	char **environment_variable, **new_environmentment;
 	int index, index2;
 
@@ -91,7 +91,7 @@ int shell_unset_environment(char **arguments, char __attribute__((__unused__)) *
 int shell_set_environment(char **arguments, char __attribute__((__unused__)) **front)
 {
 	char **environment_variable = NULL, **new_environmentment, *new_value;
-	size_type size;
+	size_t size;
 	int index;
 
 	if (!arguments[0] || !arguments[1])

@@ -16,8 +16,8 @@ int run_arguments(char **arguments, char **front, int *exe_ret);
  */
 char *get_arguments(char *line, int *exe_ret)
 {
-	size_type n = 0;
-	ssize_type read;
+	size_t n = 0;
+	ssize_t read;
 	char *prompt = "$ ";
 
 	if (line)
@@ -57,7 +57,7 @@ int call_arguments(char **arguments, char **front, int *exe_ret)
 		return (*exe_ret);
 	for (index = 0; arguments[index]; index++)
 	{
-		if (_strncmp(arguments[index], "||", 2) == 0)
+		if (_string_compare(arguments[index], "||", 2) == 0)
 		{
 			free(arguments[index]);
 			arguments[index] = NULL;
@@ -75,7 +75,7 @@ int call_arguments(char **arguments, char **front, int *exe_ret)
 				return (return_value);
 			}
 		}
-		else if (_strncmp(arguments[index], "&&", 2) == 0)
+		else if (_string_compare(arguments[index], "&&", 2) == 0)
 		{
 			free(arguments[index]);
 			arguments[index] = NULL;
@@ -130,7 +130,7 @@ int handle_arguments(int *exe_ret)
 
 	for (index = 0; arguments[index]; index++)
 	{
-		if (_strncmp(arguments[index], ";", 1) == 0)
+		if (_string_compare(arguments[index], ";", 1) == 0)
 		{
 			free(arguments[index]);
 			arguments[index] = NULL;
@@ -155,7 +155,7 @@ int handle_arguments(int *exe_ret)
  */
 int check_arguments(char **arguments)
 {
-	size_type i;
+	size_t i;
 	char *current, *nex;
 
 	for (i = 0; arguments[i]; i++)

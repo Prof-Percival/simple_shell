@@ -1,8 +1,8 @@
 #include "shell.h"
 
-void handle_line(char **line, ssize_type read);
-void logical_operators(char *line, ssize_type *new_length);
-ssize_type get_new_length(char *line);
+void handle_line(char **line, ssize_t read);
+void logical_operators(char *line, ssize_t *new_length);
+ssize_t get_new_length(char *line);
 
 /**
  * handle_line - Partitions a line read from standard input as needed.
@@ -12,12 +12,12 @@ ssize_type get_new_length(char *line);
  * Description: Spaces are inserted to separate ";", "||", and "&&".
  *              Replaces "#" with '\0'.
  */
-void handle_line(char **line, ssize_type read)
+void handle_line(char **line, ssize_t read)
 {
-	size_type i, j;
+	size_t i, j;
 	char *old_line, *new_line;
 	char previous, current, next;
-	ssize_type new_length;
+	ssize_t new_length;
 
 	new_length = get_new_length(*line);
 	if (new_length == read - 1)
@@ -105,10 +105,10 @@ void handle_line(char **line, ssize_type read)
  * Description: Cuts short lines containing '#' comments with '\0'.
  */
 
-ssize_type get_new_length(char *line)
+ssize_t get_new_length(char *line)
 {
-	size_type i;
-	ssize_type new_length = 0;
+	size_t i;
+	ssize_t new_length = 0;
 	char current, next;
 
 	for (i = 0; line[i]; i++)
@@ -161,7 +161,7 @@ ssize_type get_new_length(char *line)
  * @line: A pointer to the character to check in the line.
  * @new_length: Pointer to new_length in get_new_length function.
  */
-void logical_operators(char *line, ssize_type *new_length)
+void logical_operators(char *line, ssize_t *new_length)
 {
 	char previous, current, next;
 

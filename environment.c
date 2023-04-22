@@ -13,7 +13,7 @@ char **_get_environment(const char *variable);
 char **_copy_environment(void)
 {
 	char **new_environment;
-	size_type size;
+	size_t size;
 	int index;
 
 	for (size = 0; environment[size]; size++)
@@ -68,7 +68,7 @@ char **_get_environment(const char *variable)
 	length = string_length(variable);
 	for (index = 0; environment[index]; index++)
 	{
-		if (_strncmp(variable, environment[index], length) == 0)
+		if (_string_compare(variable, environment[index], length) == 0)
 			return (&environment[index]);
 	}
 

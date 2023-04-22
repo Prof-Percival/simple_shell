@@ -1,8 +1,8 @@
 #include "shell.h"
 
 void *_realloc(void *pointer, unsigned int old_size, unsigned int new_size);
-ssize_type _getline(char **line_pointer, size_type *n, FILE *stream);
-void assign_line_pointer(char **line_pointer, size_type *n, char *buffer, size_type b);
+ssize_t _getline(char **line_pointer, size_t *n, FILE *stream);
+void assign_line_pointer(char **line_pointer, size_t *n, char *buffer, size_t b);
 
 /**
  * _realloc - Reallocates a memory block using malloc and free.
@@ -63,10 +63,10 @@ void *_realloc(void *pointer, unsigned int old_size, unsigned int new_size)
  *
  * Return: The number of bytes read.
  */
-ssize_type _getline(char **line_pointer, size_type *n, FILE *stream)
+ssize_t _getline(char **line_pointer, size_t *n, FILE *stream)
 {
-	static ssize_type input;
-	ssize_type ret;
+	static ssize_t input;
+	ssize_t ret;
 	char c = 'x', *buffer;
 	int r;
 
@@ -117,7 +117,7 @@ ssize_type _getline(char **line_pointer, size_type *n, FILE *stream)
  * @buffer: The string to assign to line_pointer.
  * @b: The size of buffer.
  */
-void assign_line_pointer(char **line_pointer, size_type *n, char *buffer, size_type b)
+void assign_line_pointer(char **line_pointer, size_t *n, char *buffer, size_t b)
 {
 	if (*line_pointer == NULL)
 	{
