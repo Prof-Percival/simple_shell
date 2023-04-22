@@ -13,7 +13,7 @@
 #define END_OF_FILE -2
 #define EXIT -3
 
-/* Global environmentemnt */
+/* Global environment */
 extern char **environment;
 /* Global program name */
 char *name;
@@ -92,7 +92,7 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 /* Builtins */
 int (*get_a_builtin(char *command))(char **arguments, char **front);
 int shell_exit(char **arguments, char **front);
-int shell_environmentironment(char **arguments, char __attribute__((__unused__)) **front);
+int shell_environment(char **arguments, char __attribute__((__unused__)) **front);
 int shell_set_environment(char **arguments, char __attribute__((__unused__)) **front);
 int shell_unset_environment(char **arguments, char __attribute__((__unused__)) **front);
 int shell_change_directory(char **arguments, char __attribute__((__unused__)) **front);

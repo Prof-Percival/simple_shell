@@ -60,7 +60,7 @@ int (*get_a_builtin(char *command))(char **arguments, char **front)
 {
 	builtin_type functions[] = {
 		{ "exit", shell_exit },
-		{ "env", shell_environmentironment },
+		{ "env", shell_environment },
 		{ "setenv", shell_set_environment },
 		{ "unsetenv", shell_unset_environment },
 		{ "cd", shell_change_directory },

@@ -1,11 +1,11 @@
 #include "shell.h"
 
-int shell_environmentironment(char **arguments, char __attribute__((__unused__)) **front);
+int shell_environment(char **arguments, char __attribute__((__unused__)) **front);
 int shell_unset_environment(char **arguments, char __attribute__((__unused__)) **front);
 int shell_set_environment(char **arguments, char __attribute__((__unused__)) **front);
 
 /**
- * shell_environmentironment - It prints the current environment.
+ * shell_environment - It prints the current environment.
  * @arguments: An array of arguments passed to the shell.
  * @front: A double pointer to the beginning of arguments.
  *
@@ -15,7 +15,7 @@ int shell_set_environment(char **arguments, char __attribute__((__unused__)) **f
  * Description: It prints one variable per line in the
  *              format 'variable'='value'.
  */
-int shell_environmentironment(char **arguments, char __attribute__((__unused__)) **front)
+int shell_environment(char **arguments, char __attribute__((__unused__)) **front)
 {
 	int index;
 	char newline_character = '\n';
