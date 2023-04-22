@@ -3,7 +3,7 @@
 char *_strchr(char *s, char c);
 int _string_compare(char *string1, char *string2);
 int _strspn(char *s, char *accept);
-int _strncmp(const char *string1, const char *string2, size_type n);
+int _strncmp(const char *string1, const char *string2, size_t n);
 
 /**
  * _strchr - Locates a character in a string.
@@ -88,9 +88,9 @@ int _strspn(char *s, char *accept)
  *         0 if string1 and string2 match.
  *         Greater than 0 if string1 is longer than string2.
  */
-int _strncmp(const char *string1, const char *string2, size_type n)
+int _strncmp(const char *string1, const char *string2, size_t n)
 {
-	size_type i;
+	size_t i;
 
 	for (i = 0; string1[i] && string2[i] && i < n; i++)
 	{

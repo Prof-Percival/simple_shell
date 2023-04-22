@@ -15,7 +15,7 @@ int cant_open(char *file_path);
  */
 int proc_file_commands(char *file_path, int *exe_ret)
 {
-	ssize_type file, b_read, i;
+	ssize_t file, b_read, i;
 	unsigned int line_size = 0;
 	unsigned int old_size = 120;
 	char *line, **arguments, **front;

@@ -80,11 +80,11 @@ char *get_location(char *command)
 
 	while (dirs)
 	{
-		temp = malloc(string_length(dirs->dir) + string_length(command) + 2);
+		temp = malloc(string_length(dirs->directory) + string_length(command) + 2);
 		if (!temp)
 			return (NULL);
 
-		_stringcopy(temp, dirs->dir);
+		_stringcopy(temp, dirs->directory);
 		_stringcat(temp, "/");
 		_stringcat(temp, command);
 

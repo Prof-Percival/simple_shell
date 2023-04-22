@@ -3,7 +3,7 @@
 int string_length(const char *s);
 char *_stringcat(char *destination, const char *source);
 char *_stringcopy(char *destination, const char *source);
-char *_strncat(char *destination, const char *source, size_type n);
+char *_strncat(char *destination, const char *source, size_t n);
 
 /**
  * string_length - Returns the length of a string.
@@ -56,7 +56,7 @@ char *_stringcat(char *destination, const char *source)
  */
 char *_stringcopy(char *destination, const char *source)
 {
-	size_type i;
+	size_t i;
 
 	for (i = 0; source[i] != '\0'; i++)
 		destination[i] = source[i];
@@ -74,10 +74,10 @@ char *_stringcopy(char *destination, const char *source)
  *
  * Return: Pointer to destination string.
  */
-char *_strncat(char *destination, const char *source, size_type n)
+char *_strncat(char *destination, const char *source, size_t n)
 {
-	size_type dest_length = string_length(destination);
-	size_type i;
+	size_t dest_length = string_length(destination);
+	size_t i;
 
 	for (i = 0; i < n && source[i] != '\0'; i++)
 		destination[dest_length + i] = source[i];

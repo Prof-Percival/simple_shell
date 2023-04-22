@@ -13,7 +13,7 @@ char **_get_environment(const char *variable);
 char **_copy_environment(void)
 {
 	char **new_environment;
-	size_type size;
+	size_t size;
 	int index;
 
 	for (size = 0; environment[size]; size++)

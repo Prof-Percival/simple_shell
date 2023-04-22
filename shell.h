@@ -13,7 +13,7 @@
 #define END_OF_FILE -2
 #define EXIT -3
 
-/* Global environmentemnt */
+/* Global environment */
 extern char **environment;
 /* Global program name */
 char *name;
@@ -59,7 +59,7 @@ typedef struct alias_shell
 alias_type *aliases;
 
 /* Main Helpers */
-ssize_type _getline(char **line_pointer, size_type *n, FILE *stream);
+ssize_t _getline(char **line_pointer, size_t *n, FILE *stream);
 void *_realloc(void *pointer, unsigned int old_size, unsigned int new_size);
 char **_strtok(char *line, char *delim);
 char *get_location(char *command);
@@ -69,7 +69,7 @@ void free_list(list_type *head);
 char *_integer_to_string(int num);
 
 /* Input Helpers */
-void handle_line(char **line, ssize_type read);
+void handle_line(char **line, ssize_t read);
 void variable_replacement(char **arguments, int *exe_ret);
 char *get_arguments(char *line, int *exe_ret);
 int call_arguments(char **arguments, char **front, int *exe_ret);
@@ -82,17 +82,17 @@ char **replace_aliases(char **arguments);
 /* String functions */
 int string_length(const char *s);
 char *_stringcat(char *dest, const char *src);
-char *_strncat(char *dest, const char *src, size_type n);
+char *_strncat(char *dest, const char *src, size_t n);
 char *_stringcopy(char *dest, const char *src);
 char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
 int _string_compare(char *s1, char *s2);
-int _strncmp(const char *s1, const char *s2, size_type n);
+int _strncmp(const char *s1, const char *s2, size_t n);
 
 /* Builtins */
 int (*get_a_builtin(char *command))(char **arguments, char **front);
 int shell_exit(char **arguments, char **front);
-int shell_environmentironment(char **arguments, char __attribute__((__unused__)) **front);
+int shell_environment(char **arguments, char __attribute__((__unused__)) **front);
 int shell_set_environment(char **arguments, char __attribute__((__unused__)) **front);
 int shell_unset_environment(char **arguments, char __attribute__((__unused__)) **front);
 int shell_change_directory(char **arguments, char __attribute__((__unused__)) **front);
@@ -106,7 +106,7 @@ char **_get_environment(const char *variable);
 
 /* Error Handling */
 int create_an_error(char **arguments, int err);
-char *error_environmentironment(char **arguments);
+char *error_environment(char **arguments);
 char *error_1(char **arguments);
 char *error_2_exit(char **arguments);
 char *error_2_change_directory(char **arguments);

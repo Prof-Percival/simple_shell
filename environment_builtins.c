@@ -1,82 +1,8 @@
 #include "shell.h"
 
-int shell_environmentironment(char **arguments, char __attribute__((__unused__)) **front);
-int shell_unset_environment(char **arguments, char __attribute__((__unused__)) **front);
 int shell_set_environment(char **arguments, char __attribute__((__unused__)) **front);
-
-/**
- * shell_environmentironment - It prints the current environment.
- * @arguments: An array of arguments passed to the shell.
- * @front: A double pointer to the beginning of arguments.
- *
- * Return: If an error occurs - -1.
- *	   Otherwise - 0.
- *
- * Description: It prints one variable per line in the
- *              format 'variable'='value'.
- */
-int shell_environmentironment(char **arguments, char __attribute__((__unused__)) **front)
-{
-	int index;
-	char newline_character = '\n';
-
-	if (!environment)
-		return (-1);
-
-	for (index = 0; environment[index]; index++)
-	{
-		write(STDOUT_FILENO, environment[index], string_length(environment[index]));
-		write(STDOUT_FILENO, &newline_character, 1);
-	}
-
-	(void)arguments;
-	return (0);
-}
-
-/**
- * shell_unset_environment - Deletes an environmental variable from the PATH.
- * @arguments: An array of arguments passed to the shell.
- * @front: A double pointer to the beginning of arguments.
- * Description: arguments[1] is the PATH variable to remove.
- *
- * Return: If an error occurs - -1.
- *         Otherwise - 0.
- */
-int shell_unset_environment(char **arguments, char __attribute__((__unused__)) **front)
-{
-	size_type size;
-	char **environment_variable, **new_environmentment;
-	int index, index2;
-
-	if (!arguments[0])
-		return (create_an_error(arguments, -1));
-	environment_variable = _get_environment(arguments[0]);
-	if (!environment_variable)
-		return (0);
-
-	for (size = 0; environment[size]; size++)
-		;
-
-	new_environmentment = malloc(sizeof(char *) * size);
-	if (!new_environmentment)
-		return (create_an_error(arguments, -1));
-
-	for (index = 0, index2 = 0; environment[index]; index++)
-	{
-		if (*environment_variable == environment[index])
-		{
-			free(*environment_variable);
-			continue;
-		}
-		new_environmentment[index2] = environment[index];
-		index2++;
-	}
-	free(environment);
-	environment = new_environmentment;
-	environment[size - 1] = NULL;
-
-	return (0);
-}
+int shell_environment(char **arguments, char __attribute__((__unused__)) **front);
+int shell_unset_environment(char **arguments, char __attribute__((__unused__)) **front);
 
 /**
  * shell_set_environment - It changes or adds an environmental variable to the PATH.
@@ -91,7 +17,7 @@ int shell_unset_environment(char **arguments, char __attribute__((__unused__)) *
 int shell_set_environment(char **arguments, char __attribute__((__unused__)) **front)
 {
 	char **environment_variable = NULL, **new_environmentment, *new_value;
-	size_type size;
+	size_t size;
 	int index;
 
 	if (!arguments[0] || !arguments[1])
@@ -128,6 +54,80 @@ int shell_set_environment(char **arguments, char __attribute__((__unused__)) **f
 	environment = new_environmentment;
 	environment[index] = new_value;
 	environment[index + 1] = NULL;
+
+	return (0);
+}
+
+/**
+ * shell_environment - It prints the current environment.
+ * @arguments: An array of arguments passed to the shell.
+ * @front: A double pointer to the beginning of arguments.
+ *
+ * Return: If an error occurs - -1.
+ *	   Otherwise - 0.
+ *
+ * Description: It prints one variable per line in the
+ *              format 'variable'='value'.
+ */
+int shell_environment(char **arguments, char __attribute__((__unused__)) **front)
+{
+	int index;
+	char newline_character = '\n';
+
+	if (!environment)
+		return (-1);
+
+	for (index = 0; environment[index]; index++)
+	{
+		write(STDOUT_FILENO, environment[index], string_length(environment[index]));
+		write(STDOUT_FILENO, &newline_character, 1);
+	}
+
+	(void)arguments;
+	return (0);
+}
+
+/**
+ * shell_unset_environment - Deletes an environmental variable from the PATH.
+ * @arguments: An array of arguments passed to the shell.
+ * @front: A double pointer to the beginning of arguments.
+ * Description: arguments[1] is the PATH variable to remove.
+ *
+ * Return: If an error occurs - -1.
+ *         Otherwise - 0.
+ */
+int shell_unset_environment(char **arguments, char __attribute__((__unused__)) **front)
+{
+	size_t size;
+	char **environment_variable, **new_environmentment;
+	int index, index2;
+
+	if (!arguments[0])
+		return (create_an_error(arguments, -1));
+	environment_variable = _get_environment(arguments[0]);
+	if (!environment_variable)
+		return (0);
+
+	for (size = 0; environment[size]; size++)
+		;
+
+	new_environmentment = malloc(sizeof(char *) * size);
+	if (!new_environmentment)
+		return (create_an_error(arguments, -1));
+
+	for (index = 0, index2 = 0; environment[index]; index++)
+	{
+		if (*environment_variable == environment[index])
+		{
+			free(*environment_variable);
+			continue;
+		}
+		new_environmentment[index2] = environment[index];
+		index2++;
+	}
+	free(environment);
+	environment = new_environmentment;
+	environment[size - 1] = NULL;
 
 	return (0);
 }

@@ -16,8 +16,8 @@ int run_arguments(char **arguments, char **front, int *exe_ret);
  */
 char *get_arguments(char *line, int *exe_ret)
 {
-	size_type n = 0;
-	ssize_type read;
+	size_t n = 0;
+	ssize_t read;
 	char *prompt = "$ ";
 
 	if (line)
@@ -155,7 +155,7 @@ int handle_arguments(int *exe_ret)
  */
 int check_arguments(char **arguments)
 {
-	size_type i;
+	size_t i;
 	char *current, *nex;
 
 	for (i = 0; arguments[i]; i++)

@@ -60,7 +60,7 @@ int (*get_a_builtin(char *command))(char **arguments, char **front)
 {
 	builtin_type functions[] = {
 		{ "exit", shell_exit },
-		{ "env", shell_environmentironment },
+		{ "env", shell_environment },
 		{ "setenv", shell_set_environment },
 		{ "unsetenv", shell_unset_environment },
 		{ "cd", shell_change_directory },
@@ -94,15 +94,15 @@ int shell_help(char **arguments, char __attribute__((__unused__)) **front)
 	else if (_string_compare(arguments[0], "alias") == 0)
 		help_alias();
 	else if (_string_compare(arguments[0], "cd") == 0)
-		help_cd();
+		help_change_directory();
 	else if (_string_compare(arguments[0], "exit") == 0)
 		help_exit();
 	else if (_string_compare(arguments[0], "env") == 0)
-		help_env();
+		help_environment();
 	else if (_string_compare(arguments[0], "setenv") == 0)
-		help_setenv();
+		help_set_environment();
 	else if (_string_compare(arguments[0], "unsetenv") == 0)
-		help_unsetenv();
+		help_unset_environment();
 	else if (_string_compare(arguments[0], "help") == 0)
 		help_help();
 	else
@@ -126,7 +126,7 @@ int shell_change_directory(char **arguments, char __attribute__((__unused__)) **
 	char *oldprint_working_directory = NULL, *print_working_directory = NULL;
 	struct stat dir;
 
-	oldprint_working_directory = get_current_working_directory(oldprint_working_directory, 0);
+	oldprint_working_directory = getcwd(oldprint_working_directory, 0);
 	if (!oldprint_working_directory)
 		return (-1);
 
@@ -164,7 +164,7 @@ int shell_change_directory(char **arguments, char __attribute__((__unused__)) **
 			chdir(*(_get_environment("HOME")) + 5);
 	}
 
-	print_working_directory = get_current_working_directory(print_working_directory, 0);
+	print_working_directory = getcwd(print_working_directory, 0);
 	if (!print_working_directory)
 		return (-1);
 

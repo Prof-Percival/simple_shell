@@ -12,7 +12,7 @@ char *get_environment_value(char *beginning, int length);
  */
 void free_arguments(char **arguments, char **front)
 {
-	size_type i;
+	size_t i;
 
 	for (i = 0; arguments[i] || arguments[i + 1]; i++)
 		free(arguments[i]);
@@ -92,9 +92,9 @@ void variable_replacement(char **line, int *exe_ret)
  */
 char *get_pid(void)
 {
-	size_type i = 0;
+	size_t i = 0;
 	char *buffer;
-	ssize_type file;
+	ssize_t file;
 
 	file = open("/proc/self/stat", O_RDONLY);
 	if (file == -1)

@@ -1,7 +1,7 @@
 #include "shell.h"
 
 int number_length(int number);
-int create_an_error(char **arguments, int error);
+int create_an_error(char **arguments, int error_value);
 char *_integer_to_string(int number);
 
 /**
@@ -40,14 +40,14 @@ int number_length(int number)
  *
  * Return: The error value.
  */
-int create_an_error(char **arguments, int error)
+int create_an_error(char **arguments, int error_value)
 {
 	char *error;
 
-	switch (error)
+	switch (error_value)
 	{
 	case -1:
-		error = error_environmentironment(arguments);
+		error = error_environment(arguments);
 		break;
 	case 1:
 		error = error_1(arguments);
@@ -71,7 +71,7 @@ int create_an_error(char **arguments, int error)
 
 	if (error)
 		free(error);
-	return (error);
+	return (error_value);
 
 }
 
