@@ -44,7 +44,7 @@ int shell_exit(char **arguments, char **front)
 		return (create_an_error(--arguments, 2));
 	arguments -= 1;
 	free_arguments(arguments, front);
-	free_env();
+	free_environment();
 	free_alias_list(aliases);
 	exit(number);
 }
@@ -58,9 +58,9 @@ int shell_exit(char **arguments, char **front)
  */
 int (*get_a_builtin(char *command))(char **arguments, char **front)
 {
-	builtin_t functions[] = {
+	builtin_type functions[] = {
 		{ "exit", shell_exit },
-		{ "env", shell_environment },
+		{ "env", shell_environmentironment },
 		{ "setenv", shell_set_environment },
 		{ "unsetenv", shell_unset_environment },
 		{ "cd", shell_change_directory },
@@ -72,7 +72,7 @@ int (*get_a_builtin(char *command))(char **arguments, char **front)
 
 	for (i = 0; functions[i].name; i++)
 	{
-		if (_strcmp(functions[i].name, command) == 0)
+		if (_string_compare(functions[i].name, command) == 0)
 			break;
 	}
 	return (functions[i].f);
@@ -91,22 +91,22 @@ int shell_help(char **arguments, char __attribute__((__unused__)) **front)
 {
 	if (!arguments[0])
 		help_all();
-	else if (_strcmp(arguments[0], "alias") == 0)
+	else if (_string_compare(arguments[0], "alias") == 0)
 		help_alias();
-	else if (_strcmp(arguments[0], "cd") == 0)
+	else if (_string_compare(arguments[0], "cd") == 0)
 		help_cd();
-	else if (_strcmp(arguments[0], "exit") == 0)
+	else if (_string_compare(arguments[0], "exit") == 0)
 		help_exit();
-	else if (_strcmp(arguments[0], "env") == 0)
+	else if (_string_compare(arguments[0], "env") == 0)
 		help_env();
-	else if (_strcmp(arguments[0], "setenv") == 0)
+	else if (_string_compare(arguments[0], "setenv") == 0)
 		help_setenv();
-	else if (_strcmp(arguments[0], "unsetenv") == 0)
+	else if (_string_compare(arguments[0], "unsetenv") == 0)
 		help_unsetenv();
-	else if (_strcmp(arguments[0], "help") == 0)
+	else if (_string_compare(arguments[0], "help") == 0)
 		help_help();
 	else
-		write(STDERR_FILENO, name, _strlen(name));
+		write(STDERR_FILENO, name, string_length(name));
 
 	return (0);
 }
@@ -132,13 +132,13 @@ int shell_change_directory(char **arguments, char __attribute__((__unused__)) **
 
 	if (arguments[0])
 	{
-		if (*(arguments[0]) == '-' || _strcmp(arguments[0], "--") == 0)
+		if (*(arguments[0]) == '-' || _string_compare(arguments[0], "--") == 0)
 		{
 			if ((arguments[0][1] == '-' && arguments[0][2] == '\0') ||
 					arguments[0][1] == '\0')
 			{
-				if (_getenv("OLDPWD") != NULL)
-					(chdir(*_getenv("OLDPWD") + 7));
+				if (_get_environment("OLDPWD") != NULL)
+					(chdir(*_get_environment("OLDPWD") + 7));
 			}
 			else
 			{
@@ -160,8 +160,8 @@ int shell_change_directory(char **arguments, char __attribute__((__unused__)) **
 	}
 	else
 	{
-		if (_getenv("HOME") != NULL)
-			chdir(*(_getenv("HOME")) + 5);
+		if (_get_environment("HOME") != NULL)
+			chdir(*(_get_environment("HOME")) + 5);
 	}
 
 	print_working_directory = get_current_working_directory(print_working_directory, 0);
@@ -183,7 +183,7 @@ int shell_change_directory(char **arguments, char __attribute__((__unused__)) **
 		return (-1);
 	if (arguments[0] && arguments[0][0] == '-' && arguments[0][1] != '-')
 	{
-		write(STDOUT_FILENO, print_working_directory, _strlen(print_working_directory));
+		write(STDOUT_FILENO, print_working_directory, string_length(print_working_directory));
 		write(STDOUT_FILENO, new_line, 1);
 	}
 	free(oldprint_working_directory);
