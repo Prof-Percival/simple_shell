@@ -34,43 +34,43 @@ int number_length(int number)
 }
 
 /**
- * create_an_error - It writes a custom error_value message to stderror.
+ * create_an_error - It writes a custom error message to stderror.
  * @arguments: An array of arguments.
- * @error_value: The error_value value.
+ * @error: The error value.
  *
- * Return: The error_value value.
+ * Return: The error value.
  */
 int create_an_error(char **arguments, int error_value)
 {
-	char *error_value;
+	char *error;
 
 	switch (error_value)
 	{
 	case -1:
-		error_value = error_environmentironment(arguments);
+		error = error_environmentironment(arguments);
 		break;
 	case 1:
-		error_value = error_1(arguments);
+		error = error_1(arguments);
 		break;
 	case 2:
 		if (*(arguments[0]) == 'e')
-			error_value = error_2_exit(++arguments);
+			error = error_2_exit(++arguments);
 		else if (arguments[0][0] == ';' || arguments[0][0] == '&' || arguments[0][0] == '|')
-			error_value = error_2_syntax(arguments);
+			error = error_2_syntax(arguments);
 		else
-			error_value = error_2_change_directory(arguments);
+			error = error_2_change_directory(arguments);
 		break;
 	case 126:
-		error_value = error_126(arguments);
+		error = error_126(arguments);
 		break;
 	case 127:
-		error_value = error_127(arguments);
+		error = error_127(arguments);
 		break;
 	}
-	write(STDERR_FILENO, error_value, string_length(error_value));
+	write(STDERR_FILENO, error, string_length(error));
 
-	if (error_value)
-		free(error_value);
+	if (error)
+		free(error);
 	return (error_value);
 
 }

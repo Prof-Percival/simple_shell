@@ -126,7 +126,7 @@ int shell_change_directory(char **arguments, char __attribute__((__unused__)) **
 	char *oldprint_working_directory = NULL, *print_working_directory = NULL;
 	struct stat dir;
 
-	oldprint_working_directory = get_current_working_directory(oldprint_working_directory, 0);
+	oldprint_working_directory = getcwd(oldprint_working_directory, 0);
 	if (!oldprint_working_directory)
 		return (-1);
 
@@ -164,7 +164,7 @@ int shell_change_directory(char **arguments, char __attribute__((__unused__)) **
 			chdir(*(_get_environment("HOME")) + 5);
 	}
 
-	print_working_directory = get_current_working_directory(print_working_directory, 0);
+	print_working_directory = getcwd(print_working_directory, 0);
 	if (!print_working_directory)
 		return (-1);
 

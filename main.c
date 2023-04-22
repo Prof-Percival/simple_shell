@@ -1,17 +1,17 @@
 #include "shell.h"
 
-void signal_handler(int signal);
+void signal_handler(int signal_value);
 int execute(char **arguments, char **front);
 
 /**
  * signal_handler - Prints a new prompt upon a signal.
  * @signal: The signal.
  */
-void signal_handler(int signal)
+void signal_handler(int signal_value)
 {
 	char *new_prompt = "\n$ ";
 
-	(void)signal;
+	(void)signal_value;
 	signal(SIGINT, signal_handler);
 	write(STDIN_FILENO, new_prompt, 3);
 }
