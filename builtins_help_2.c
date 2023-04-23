@@ -23,7 +23,7 @@ void help_set_environment(void)
 	char *message = "setenv: setenv [variable] [VALUE]\n\tInitializes a new";
 
 	write(STDOUT_FILENO, message, string_length(message));
-	message = "environment variable, or modifies an existing one.\n\n";
+	message = "environ variable, or modifies an existing one.\n\n";
 	write(STDOUT_FILENO, message, string_length(message));
 	message = "\tUpon failure, prints a message to stderr.\n";
 	write(STDOUT_FILENO, message, string_length(message));

@@ -55,7 +55,7 @@ int execute(char **arguments, char **front)
 		}
 		if (child_pid == 0)
 		{
-			execve(command, arguments, environment);
+			execve(command, arguments, environ);
 			if (errno == EACCES)
 				return_value = (create_an_error(arguments, 126));
 			free_environment();
@@ -93,8 +93,8 @@ int main(int argc, char *argv[])
 	signal(SIGINT, signal_handler);
 
 	*exe_ret = 0;
-	environment = _copy_environment();
-	if (!environment)
+	environ = _copy_environment();
+	if (!environ)
 		exit(-100);
 
 	if (argc != 1)

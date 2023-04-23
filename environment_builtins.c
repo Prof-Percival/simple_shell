@@ -37,7 +37,7 @@ int shell_set_environment(char **arguments, char __attribute__((__unused__)) **f
 		*environment_variable = new_value;
 		return (0);
 	}
-	for (size = 0; environment[size]; size++)
+	for (size = 0; environ[size]; size++)
 		;
 
 	new_environmentment = malloc(sizeof(char *) * (size + 2));
@@ -47,13 +47,13 @@ int shell_set_environment(char **arguments, char __attribute__((__unused__)) **f
 		return (create_an_error(arguments, -1));
 	}
 
-	for (index = 0; environment[index]; index++)
-		new_environmentment[index] = environment[index];
+	for (index = 0; environ[index]; index++)
+		new_environmentment[index] = environ[index];
 
-	free(environment);
-	environment = new_environmentment;
-	environment[index] = new_value;
-	environment[index + 1] = NULL;
+	free(environ);
+	environ = new_environmentment;
+	environ[index] = new_value;
+	environ[index + 1] = NULL;
 
 	return (0);
 }
@@ -74,12 +74,12 @@ int shell_environment(char **arguments, char __attribute__((__unused__)) **front
 	int index;
 	char newline_character = '\n';
 
-	if (!environment)
+	if (!environ)
 		return (-1);
 
-	for (index = 0; environment[index]; index++)
+	for (index = 0; environ[index]; index++)
 	{
-		write(STDOUT_FILENO, environment[index], string_length(environment[index]));
+		write(STDOUT_FILENO, environ[index], string_length(environ[index]));
 		write(STDOUT_FILENO, &newline_character, 1);
 	}
 
@@ -108,26 +108,26 @@ int shell_unset_environment(char **arguments, char __attribute__((__unused__)) *
 	if (!environment_variable)
 		return (0);
 
-	for (size = 0; environment[size]; size++)
+	for (size = 0; environ[size]; size++)
 		;
 
 	new_environmentment = malloc(sizeof(char *) * size);
 	if (!new_environmentment)
 		return (create_an_error(arguments, -1));
 
-	for (index = 0, index2 = 0; environment[index]; index++)
+	for (index = 0, index2 = 0; environ[index]; index++)
 	{
-		if (*environment_variable == environment[index])
+		if (*environment_variable == environ[index])
 		{
 			free(*environment_variable);
 			continue;
 		}
-		new_environmentment[index2] = environment[index];
+		new_environmentment[index2] = environ[index];
 		index2++;
 	}
-	free(environment);
-	environment = new_environmentment;
-	environment[size - 1] = NULL;
+	free(environ);
+	environ = new_environmentment;
+	environ[size - 1] = NULL;
 
 	return (0);
 }
