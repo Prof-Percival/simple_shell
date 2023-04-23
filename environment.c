@@ -16,16 +16,16 @@ char **_copy_environment(void)
 	size_t size;
 	int index;
 
-	for (size = 0; environment[size]; size++)
+	for (size = 0; environ[size]; size++)
 		;
 
 	new_environment = malloc(sizeof(char *) * (size + 1));
 	if (!new_environment)
 		return (NULL);
 
-	for (index = 0; environment[index]; index++)
+	for (index = 0; environ[index]; index++)
 	{
-		new_environment[index] = malloc(string_length(environment[index]) + 1);
+		new_environment[index] = malloc(string_length(environ[index]) + 1);
 
 		if (!new_environment[index])
 		{
@@ -34,7 +34,7 @@ char **_copy_environment(void)
 			free(new_environment);
 			return (NULL);
 		}
-		_stringcopy(new_environment[index], environment[index]);
+		_stringcopy(new_environment[index], environ[index]);
 	}
 	new_environment[index] = NULL;
 
@@ -42,15 +42,15 @@ char **_copy_environment(void)
 }
 
 /**
- * free_environment - Frees the the environment copy.
+ * free_environment - Frees the the environ copy.
  */
 void free_environment(void)
 {
 	int index;
 
-	for (index = 0; environment[index]; index++)
-		free(environment[index]);
-	free(environment);
+	for (index = 0; environ[index]; index++)
+		free(environ[index]);
+	free(environ);
 }
 
 
@@ -66,10 +66,10 @@ char **_get_environment(const char *variable)
 	int index, length;
 
 	length = string_length(variable);
-	for (index = 0; environment[index]; index++)
+	for (index = 0; environ[index]; index++)
 	{
-		if (_strncmp(variable, environment[index], length) == 0)
-			return (&environment[index]);
+		if (_strncmp(variable, environ[index], length) == 0)
+			return (&environ[index]);
 	}
 
 	return (NULL);
